@@ -32,12 +32,13 @@ router.get('/:id', restricted,(req, res) => {
 router.post('/', restricted,(req, res) => {
   const schemeData = req.body;
 
+
   Inputs.add(schemeData)
   .then(inputs => {
     res.status(201).json(inputs);
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to create new inputs' });
+    res.status(500).json({ message: 'Failed to create new inputs', err  });
   });
 });
 

@@ -18,8 +18,16 @@ function findBy(filter) {
 }
 
 async function add(inputs) {
-  const [id] = await db('inputs').insert(inputs);
-  return findById(id);
+  console.log(inputs)
+  // const [id] = await db('inputs').insert(inputs);
+  return db('inputs').insert(inputs)
+  .then( ids => {
+    // console.log(ids)
+    const [id] = ids;
+  
+    return findById(id);
+  })
+  // return findById(id);
 }
 
 function findById(id) {
